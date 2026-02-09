@@ -10,7 +10,7 @@
 
   <style>
     :root {
-      --header-bg: #1e272e; --desk-bg: #7a161e; --paper: #e8f5e9;
+      --header-bg: #0f172f; --desk-bg: #442200; --paper: #e8f5e9;
       --ink-black: #1e272e; --ink-blue: #0984e3; --ink-red: #d63031;
       --clr-blue: #1565c0; --bg-about: #b2ebf2;
       --clr-orange: #e67e22; --bg-links: #fff9c4;
@@ -18,10 +18,15 @@
       --clr-faq: #4b6584;
     }
    
-    body { font-family: 'Segoe UI', sans-serif; background: var(--desk-bg); background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.2) 0px, rgba(0,0,0,0.2) 2px, transparent 2px, transparent 40px); margin: 0; padding: 0; }
+   body { 
+  font-family: 'Segoe UI', sans-serif; 
+  background: var(--desk-bg);
+  margin: 0; 
+  padding: 0; 
+}
     .navbar { background: var(--header-bg); border-bottom: 5px solid #000; position: sticky; top: 0; z-index: 1000; }
     
-    .logo-text { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.5rem; color: #ffff00; text-shadow: 1px 1px 0 #000; cursor: pointer; text-decoration: none; }
+    .logo-text { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.5rem; color: #ffffff; text-shadow: 1px 1px 0 #000; cursor: pointer; text-decoration: none; }
     .nav-inner { 
     max-width: 900px; 
     margin: 0 auto; 
@@ -56,23 +61,30 @@
 
 /* Specific adjustment for very small screens */
 @media (max-width: 650px) { 
-    .container { padding: 40px 20px 40px 60px; } 
+    /* Center Navbar on Mobile */
+    .nav-inner {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .logo-text {
+        text-align: center;
+        width: 100%;
+    }
+    .nav-links {
+        justify-content: center;
+    }
+
+    /* Remove dots and green strip on Mobile */
+    .container::before { display: none; } 
+    .container { 
+        padding: 30px 20px !important; 
+        border-left: none !important; 
+        margin: 10px auto;
+        width: 92%; 
+    }
+
     .quick-grid { grid-template-columns: 1fr; } 
-
-    /* New: Library aur Mocks ki tiles ko mobile par single column karne ke liye */
-    .acc-panel { 
-        grid-template-columns: 1fr !important; 
-    }
-
-    /* New: Help tab ke Important Links ko single column karne ke liye */
-    #imp-list { 
-        grid-template-columns: 1fr !important; 
-    }
-
-    /* New: Sticky notes ki font size thodi set karne ke liye */
-    .sticky-note {
-        padding: 20px 10px;
-    }
+    .acc-panel, #imp-list { grid-template-columns: 1fr !important; }
 }
     .nav-btn.active { color: #ffff00; }
     .yt-btn { background: #ff0000; color: #fff; padding: 6px 15px; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; display: flex; align-items: center; gap: 8px; font-weight: 700; text-decoration: none; }
