@@ -58,31 +58,51 @@
     text-transform: uppercase; 
     white-space: nowrap; /* Prevents button text like 'Practice' from splitting */
 }
+/* FAQ answer alignment fix */
+.faq-a div {
+    gap: 8px !important; 
+}
+.faq-a {
+    padding: 15px 12px !important; /* Left se space kam kiya */
+}
 
 /* Specific adjustment for very small screens */
 @media (max-width: 650px) { 
-    /* Center Navbar on Mobile */
+    /* Center Navbar on Mobile with tighter gaps */
     .nav-inner {
         flex-direction: column;
-        gap: 10px;
+        gap: 5px; /* Gap kam kiya taaki height kam ho jaye */
+        padding: 8px 10px;
     }
     .logo-text {
         text-align: center;
         width: 100%;
+        font-size: 1.2rem; /* Title thoda chota taaki ek line mein aaye */
     }
     .nav-links {
         justify-content: center;
+        gap: 5px; /* Buttons ke beech ka gap kam kiya */
+        width: 100%;
+    }
+    .nav-btn {
+        padding: 5px 6px;
+        font-size: 0.8rem; /* Buttons thode compact */
+    }
+    .yt-btn {
+        padding: 4px 10px;
+        font-size: 0.75rem;
     }
 
     /* Remove dots and green strip on Mobile */
     .container::before { display: none; } 
     .container { 
-        padding: 30px 20px !important; 
+        padding: 25px 15px !important; /* Side padding aur kam ki taaki text fail sake */
         border-left: none !important; 
-        margin: 10px auto;
-        width: 92%; 
+        margin: 5px auto; /* Margin kam kiya */
+        width: 94%; /* Screen ka zyada hissa use karne ke liye */
     }
 
+    /* Grid settings - as per your current code */
     .quick-grid { grid-template-columns: 1fr; } 
     .acc-panel, #imp-list { grid-template-columns: 1fr !important; }
 }
