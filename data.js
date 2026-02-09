@@ -28,21 +28,21 @@ const DATA = {
     // 4. Mock Tests
     // Pen icon (🖊️) humne fix kiya tha
     mocks: {
-        set1: [
-            { title: "Set 1: PC 1", link: "FORM_OR_TEST_LINK" },
-			{ title: "Set 1: PC 2", link: "FORM_OR_TEST_LINK" },
-			{ title: "Set 1: PC 3", link: "FORM_OR_TEST_LINK" },
-			{ title: "Set 1: PC 12", link: "FORM_OR_TEST_LINK" },
-			{ title: "Set 1: PC 14", link: "FORM_OR_TEST_LINK" },
-            { title: "Set 1: PC 16", link: "FORM_OR_TEST_LINK" }
+        set1: [ 
+            { title: "Set 1: PC 1", link: "https://testmoz.com/q/15105684" },
+			{ title: "Set 1: PC 2", link: "https://testmoz.com/q/15098712" },
+			{ title: "Set 1: PC 3", link: "https://testmoz.com/q/15102106" },
+			{ title: "Set 1: PC 12", link: "https://testmoz.com/q/15099752" },
+			{ title: "Set 1: PC 14", link: "https://testmoz.com/q/15101928" },
+            { title: "Set 1: PC 16", link: "https://testmoz.com/q/15102076" }
         ],
-        set2: [
-            { title: "Set 2: PC 1", link: "FORM_OR_TEST_LINK" },
-			{ title: "Set 2: PC 2", link: "FORM_OR_TEST_LINK" },
-			{ title: "Set 2: PC 3", link: "FORM_OR_TEST_LINK" },
-			{ title: "Set 2: PC 12", link: "FORM_OR_TEST_LINK" },
-			{ title: "Set 2: PC 14", link: "FORM_OR_TEST_LINK" },
-            { title: "Set 2: PC 16", link: "FORM_OR_TEST_LINK" }
+        set2: [ 
+            { title: "Set 2: PC 1", link: "https://testmoz.com/q/15151028" },
+			{ title: "Set 2: PC 2", link: "https://testmoz.com/q/15147968" },
+			{ title: "Set 2: PC 3", link: "https://testmoz.com/q/15151084" },
+			{ title: "Set 2: PC 12", link: "https://testmoz.com/q/15150382" },
+			{ title: "Set 2: PC 14", link: "https://testmoz.com/q/15150900" },
+            { title: "Set 2: PC 16", link: "https://testmoz.com/q/15150966" }
         ]
     },
 
