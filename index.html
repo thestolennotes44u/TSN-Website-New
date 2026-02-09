@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>The Stolen Notes | Let's crack it together...</title>
+ 
+  <link href="https://fonts.googleapis.com/css2?family=Kalam:wght@400;700&family=Montserrat:wght@600&family=Segoe+UI:wght@400;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet">
+
+  <style>
+    :root {
+      --header-bg: #1e272e; --desk-bg: #7a161e; --paper: #e8f5e9;
+      --ink-black: #1e272e; --ink-blue: #0984e3; --ink-red: #d63031;
+      --clr-blue: #1565c0; --bg-about: #b2ebf2;
+      --clr-orange: #e67e22; --bg-links: #fff9c4;
+      --clr-green: #2e7d32; --bg-faq: #c8e6c9;
+      --clr-faq: #4b6584;
+    }
+   
+    body { font-family: 'Segoe UI', sans-serif; background: var(--desk-bg); background-image: repeating-linear-gradient(0deg, rgba(0,0,0,0.2) 0px, rgba(0,0,0,0.2) 2px, transparent 2px, transparent 40px); margin: 0; padding: 0; }
+    .navbar { background: var(--header-bg); border-bottom: 5px solid #000; position: sticky; top: 0; z-index: 1000; }
+    
+    .logo-text { font-family: 'Montserrat', sans-serif; font-weight: 700; font-size: 1.5rem; color: #ffff00; text-shadow: 1px 1px 0 #000; cursor: pointer; text-decoration: none; }
+    .nav-inner { 
+    max-width: 900px; 
+    margin: 0 auto; 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 10px 20px; 
+    flex-wrap: wrap; /* Allows everything to wrap to 2nd line when tight */
+}
+
+.nav-links { 
+    display: flex; 
+    align-items: center; 
+    /* This gap will shrink as the screen shrinks */
+    gap: clamp(4px, 1.5vw, 12px); 
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.nav-btn { 
+    font-family: 'Montserrat', sans-serif; 
+    background: transparent; 
+    color: #fff; 
+    border: none; 
+    /* Using slightly smaller font on mobile helps it fit longer */
+    font-size: clamp(0.85rem, 2vw, 1rem); 
+    cursor: pointer; 
+    padding: 5px 8px; 
+    text-transform: uppercase; 
+    white-space: nowrap; /* Prevents button text like 'Practice' from splitting */
+}
+
+/* Specific adjustment for very small screens */
+@media (max-width: 650px) { 
+    .container { padding: 40px 20px 40px 60px; } 
+    .quick-grid { grid-template-columns: 1fr; } 
+
+    /* New: Library aur Mocks ki tiles ko mobile par single column karne ke liye */
+    .acc-panel { 
+        grid-template-columns: 1fr !important; 
+    }
+
+    /* New: Help tab ke Important Links ko single column karne ke liye */
+    #imp-list { 
+        grid-template-columns: 1fr !important; 
+    }
+
+    /* New: Sticky notes ki font size thodi set karne ke liye */
+    .sticky-note {
+        padding: 20px 10px;
+    }
+}
+    .nav-btn.active { color: #ffff00; }
+    .yt-btn { background: #ff0000; color: #fff; padding: 6px 15px; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; display: flex; align-items: center; gap: 8px; font-weight: 700; text-decoration: none; }
+
+    .container { max-width: 800px; margin: 25px auto; min-height: 85vh; background-color: var(--paper); background-image: linear-gradient(#c8e6c9 1px, transparent 1px); background-size: 100% 2.2rem; padding: 40px 40px 40px 75px; box-shadow: 15px 15px 50px rgba(0,0,0,0.7); position: relative; border-left: 20px solid #6b8e6b; }
+    .container::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 30px; background-image: radial-gradient(circle, #333 5px, transparent 7px); background-size: 30px 44px; z-index: 2; }
+
+    .page-section { display: none; animation: fadeIn 0.4s ease-out; }
+    @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+    .crack-it {
+  font-family: 'Kalam', cursive;
+  color: #d63031;
+  font-weight: 700;
+  font-size: 1.8rem; /* Heading feel dene ke liye thoda bada */
+  display: inline-block;
+  margin-bottom: 5px;
+  /* Border, background aur cursor pointer hata diya gaya hai */
+}
+    .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 30px 0; }
+    .sticky-note { font-family: 'Kalam', cursive; padding: 25px 10px; text-align: center; cursor: pointer; box-shadow: 4px 4px 10px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.1); }
+    .sn-video { background: #c7eeff; transform: rotate(-2deg); }
+    .sn-notes { background: #d4f8d4; transform: rotate(1deg); }
+    .sn-mocks { background: #fff9c4; transform: rotate(-1.5deg); }
+
+    #libSearch { width: 100%; padding: 12px 25px; font-size: 1.1rem; border: 2px solid var(--ink-blue); border-radius: 50px; outline: none; margin-bottom: 30px; box-sizing: border-box; }
+    .acc-panel { display: none; padding: 20px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; border: 2px dashed #999; margin-bottom: 25px; }
+    .floating-tile { background: white; padding: 15px; border-radius: 8px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); display: flex; align-items: center; gap: 10px; font-weight: 600; border: 1px solid #eee; text-decoration: none; color: inherit; }
+    .flag-btn { width: 100%; text-align: left; padding: 12px 20px; font-size: 1.2rem; cursor: pointer; margin-bottom: 8px; font-family: 'Montserrat', sans-serif; border: 2px solid; border-radius: 4px; }
+    .fb-blue { background: #e3f2fd; color: #1565c0; border-color: #1565c0; }
+    .fb-green { background: #e8f5e9; color: #2e7d32; border-color: #2e7d32; }
+    .fb-orange { background: #fff3e0; color: #e67e22; border-color: #e67e22; }
+
+    .flags-header { display: flex; gap: 8px; align-items: flex-end; height: 60px; }
+    .flag-btn-s { font-family: 'Montserrat', sans-serif; padding: 8px 20px; border: 2px solid #333; border-bottom: none; border-radius: 8px 8px 0 0; cursor: pointer; }
+    .flag-btn-s.active { height: 50px; z-index: 5; font-weight: 700; border-bottom: 2px solid transparent !important; }
+    .folder-body { border: 2px solid #333; border-radius: 0 10px 10px 10px; padding: 30px; min-height: 300px; display: none; }
+    .folder-body.active { display: block; }
+
+    /* FAQ Seamless Look */
+.faq-row {
+  margin-bottom: 10px;
+  border: 1px solid #333;
+  border-radius: 6px;
+  overflow: hidden;
+  background: rgba(255, 255, 255, 0.5);
+  transition: all 0.3s ease;
+}
+
+.faq-row.open {
+  background: #fff;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.faq-q-patti {
+  cursor: pointer;
+  font-weight: 600;
+  color: #fff;
+  background: var(--clr-faq);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.faq-a {
+  display: none; /* Transition hatakar simple hide kiya */
+  color: var(--ink-blue);
+  background: #fff;
+  padding: 20px;
+	text-align: justify;
+	hyphens: auto;
+}
+
+.faq-row.open .faq-a {
+  display: block; /* Turant show karega */
+  border-top: 1px dashed #ccc;
+}
+.home-intro {
+  font-family: 'Kalam', cursive;
+  font-size: 1.25rem;
+  color: var(--ink-blue);
+  text-align: justify;
+  line-height: 1.8rem;
+}
+
+#welcome-text {
+  margin-top: 15px;
+}
+
+.yt-ribbon-container {
+  text-align: center; /* Center alignment */
+  margin-top: 25px;
+}
+
+.yt-ribbon {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #ff0000; /* Red Ribbon */
+  color: #ffffff !important; /* White Text */
+  padding: 8px 20px;
+  border-radius: 50px; /* Rounded Ribbon look */
+  font-family: 'Montserrat', sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 10px rgba(255, 0, 0, 0.3);
+  transition: transform 0.3s ease;
+}
+
+.yt-ribbon:hover {
+  transform: scale(1.05);
+  background: #d63031;
+}
+
+    .quote-line { font-family: 'Kalam', cursive; font-size: 1.3rem; color: #636e72; display: block; margin-bottom: 5px; text-align: center; }
+    .author-line { font-family: 'Kalam', cursive; font-size: 1.1rem; color: #7f8c8d; font-weight: 700; display: block; text-align: center; }
+
+    @media (max-width: 650px) { .container { padding: 40px 20px 40px 60px; } .quick-grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <div class="nav-inner">
+      <div class="logo-text" onclick="showSec('home')">THE STOLEN NOTES</div>
+      <div class="nav-links">
+        <button class="nav-btn active" onclick="showSec('home')" id="nav-home">Home</button>
+        <button class="nav-btn" onclick="showSec('library')" id="nav-library">Library</button>
+        <button class="nav-btn" onclick="showSec('mocks')" id="nav-mocks">Practice</button>
+        <button class="nav-btn" onclick="showSec('support')" id="nav-support">Help</button>
+        <a href="#" id="yt-btn" target="_blank" class="yt-btn"><span class="material-icons-round" style="font-size:18px;">smart_display</span> YouTube</a>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container">
+    <section id="home" class="page-section" style="display:block;">
+<div class="home-intro">
+  <div style="margin-bottom: 10px;">
+    <span class="crack-it">Welcome !</span>
+  </div>
+ 
+  <div id="welcome-text">
+    Navigating through thousands of pages of official manuals can be overwhelming. We simplify preparation by decoding complex rules into high-yield lectures.
+    <br><br>
+    This portal serves as the organized anchor for our community, bringing lectures, notes, and mocks together so you can focus on learning, not searching.
+   
+    <div class="yt-ribbon-container">
+      <a href="https://www.youtube.com/@TheStolenNotes" target="_blank" class="yt-ribbon">
+        <span class="material-icons-round" style="font-size:18px;">play_circle</span>
+        VISIT US ON YOUTUBE
+      </a>
+    </div>
+  </div>
+</div>
+      <div class="quick-grid">
+        <div class="sticky-note sn-video" onclick="showSec('library'); toggleAcc('lib-v', document.querySelector('.fb-blue'))"><span class="material-icons-round" style="color:#2980b9; font-size:3rem;">play_circle</span><div style="font-weight:700;">Videos</div></div>
+        <div class="sticky-note sn-notes" onclick="showSec('library'); toggleAcc('lib-n', document.querySelector('.fb-green'))"><span class="material-icons-round" style="color:#27ae60; font-size:3rem;">description</span><div style="font-weight:700;">Notes</div></div>
+        <div class="sticky-note sn-mocks" onclick="showSec('mocks')"><span class="material-icons-round" style="color:#e67e22; font-size:3rem;">quiz</span><div style="font-weight:700;">Mocks</div></div>
+      </div>
+    </section>
+
+    <section id="library" class="page-section">
+      <input type="text" id="libSearch" placeholder="Search topics..." onkeyup="libSearch()">
+      <div class="lib-group"><button class="flag-btn fb-blue" onclick="toggleAcc('lib-v', this)">Video Classes</button><div id="lib-v" class="acc-panel"></div></div>
+      <div class="lib-group"><button class="flag-btn fb-orange" onclick="toggleAcc('lib-m', this)">Reference Materials</button><div id="lib-m" class="acc-panel"></div></div>
+      <div class="lib-group"><button class="flag-btn fb-green" onclick="toggleAcc('lib-n', this)">PDF Notes</button><div id="lib-n" class="acc-panel"></div></div>
+    </section>
+
+    <section id="mocks" class="page-section">
+      <div style="text-align: right; margin-bottom: 10px;">
+        <button onclick="toggleInstructions()" style="background:var(--clr-faq); color:white; border:none; padding:6px 12px; border-radius:4px; cursor:pointer; font-size:0.8rem; display: flex; align-items: center; gap: 5px; margin-left: auto;">
+          <span class="material-icons-round" style="font-size: 16px;">info</span> Instructions
+        </button>
+      </div>
+      <div id="mock-instr" style="display:none; background:#fff9c4; border:1px dashed #f39c12; padding:20px; border-radius:8px; margin-bottom:20px; font-size:1rem; font-family:'Segoe UI', sans-serif;">
+        <ul style="margin:0; padding-left:20px; line-height:1.8; color: #2c3e50;">
+          <li>Mock tests are available for <strong>Core Plus</strong> and <strong>Audit Plus</strong> members.</li>
+          <li>Access form is available under the <strong>Posts</strong> tab on YouTube.</li>
+          <li>Access is expired after 30 days. One needs to fill the form again to get continued access.</li>
+          <li>It may take <strong>2-4 days</strong> to get access after filling in the form.</li>
+          <li><strong>Set 1</strong> is updated on the 1st of every month.</li>
+					<li><strong>Set 2</strong> is updated on the 15th of every month.</li>
+          <li>For any queries, write to: <strong>TheStolenNotes4u@gmail.com</strong></li>
+        </ul>
+      </div>
+      <button class="flag-btn fb-blue" onclick="toggleAcc('mock-1', this)">Mock Tests: Set 1</button><div id="mock-1" class="acc-panel"></div>
+      <button class="flag-btn fb-green" onclick="toggleAcc('mock-2', this)">Mock Tests: Set 2</button><div id="mock-2" class="acc-panel"></div>
+     
+      <div style="margin-top: 60px; text-align: center; border-top: 1px solid #ccc; padding-top: 30px; color: #95a5a6;">
+  <div style="font-family: 'Kalam', cursive; font-size: 1.5rem; color: #bdc3c7; font-style: italic;">
+    "Consistency is the key to excellence."
+  </div>
+</div>
+    </section>
+
+    <section id="support" class="page-section">
+      <div class="flags-header">
+        <button class="flag-btn-s t-about active" style="background:var(--bg-about);" onclick="setTab('about', this)">About</button>
+        <button class="flag-btn-s t-links" style="background:var(--bg-links);" onclick="setTab('links', this)">Links</button>
+        <button class="flag-btn-s t-faq" style="background:var(--bg-faq);" onclick="setTab('faq', this)">FAQs</button>
+      </div>
+      <div id="tab-about" class="folder-body active" style="background:var(--bg-about);">
+  <h3 style="font-family:'Montserrat', sans-serif; color:var(--ink-black); margin-top: 0;">Our Mission</h3>
+  <p style="font-family:'Segoe UI', sans-serif; line-height:1.6;">
+    The aim of <strong>The Stolen Notes</strong> is to simplify official manuals into easy-to-understand summaries.
+  </p>
+ 
+  <h3 style="font-family:'Montserrat', sans-serif; color:var(--ink-black); margin-top:20px;">What We Offer</h3>
+  <ul style="font-family:'Segoe UI', sans-serif; line-height:1.8;">
+    <li><strong>Simplified Lectures:</strong> Decoding complex rules on YouTube.</li>
+    <li><strong>Summarised Notes:</strong> High-yield summaries of the important topics / videos.</li>
+    <li><strong>Mock Tests:</strong> Exam-level practice to build your confidence.</li>
+  </ul>
+
+  <p style="margin-top:25px; padding-top: 15px; border-top: 1px dashed #333;">
+    Questions or Feedback? <br>
+    <strong>Email: <a style="color:var(--ink-red); text-decoration: none;">TheStolenNotes4u@gmail.com</a></strong>
+  </p>
+</div>
+      <div id="tab-links" class="folder-body" style="background:var(--bg-links);"><div id="imp-list" style="display:grid; grid-template-columns:1fr 1fr; gap:10px;"></div></div>
+      <div id="tab-faq" class="folder-body" style="background:var(--bg-faq);"><div id="faq-list-container"></div></div>
+    </section>
+
+    <footer><div id="home-quote-area"><span class="quote-line" id="q-text"></span><span class="author-line" id="q-author"></span></div></footer>
+  </div>
+
+  <script src="data.js"></script>
+  <script>
+    function showSec(id) {
+      // Collapse all dropdowns when switching tabs
+      document.querySelectorAll('.acc-panel').forEach(panel => panel.style.display = 'none');
+      document.querySelectorAll('.flag-btn').forEach(btn => btn.classList.remove('active'));
+      document.getElementById('mock-instr').style.display = 'none';
+
+      document.querySelectorAll('.page-section').forEach(s => s.style.display = 'none');
+      document.getElementById(id).style.display = 'block';
+      document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+      document.getElementById('nav-' + id).classList.add('active');
+      document.getElementById('home-quote-area').style.display = (id === 'home') ? 'block' : 'none';
+    }
+
+   
+    function toggleInstructions() { const x = document.getElementById('mock-instr'); x.style.display = (x.style.display === 'none') ? 'block' : 'none'; }
+
+    function toggleAcc(id, btn) {
+      const p = document.getElementById(id);
+      const isOpen = p.style.display === 'grid';
+      document.querySelectorAll('.acc-panel').forEach(panel => panel.style.display = 'none');
+      document.querySelectorAll('.flag-btn').forEach(b => b.classList.remove('active'));
+      if (!isOpen) {
+        p.style.display = 'grid';
+        if(btn) btn.classList.add('active');
+      }
+    }
+
+    function setTab(id, btn) {
+      document.querySelectorAll('.folder-body').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.flag-btn-s').forEach(f => f.classList.remove('active'));
+      document.getElementById('tab-' + id).classList.add('active');
+      btn.classList.add('active');
+    }
+
+    function libSearch() {
+  const q = document.getElementById('libSearch').value.toLowerCase();
+ 
+  document.querySelectorAll('.lib-group').forEach(group => {
+    const tiles = group.querySelectorAll('.floating-tile');
+    const panel = group.querySelector('.acc-panel');
+    const btn = group.querySelector('.flag-btn');
+    let match = false;
+
+    tiles.forEach(t => {
+      const show = t.innerText.toLowerCase().includes(q);
+      t.style.display = show ? 'flex' : 'none';
+      if(show) match = true;
+    });
+
+    // Blank hote hi collapse logic:
+    if (q === '') {
+      group.style.display = 'block'; // Saari headings wapas dikhao
+      panel.style.display = 'none'; // Lekin dropdown band (collapse)
+      if(btn) btn.classList.remove('active');
+    } else {
+      group.style.display = match ? 'block' : 'none';
+      panel.style.display = match ? 'grid' : 'none';
+      if(match && btn) btn.classList.add('active');
+    }
+  });
+}
+
+    function toggleFaq(row) {
+  const isOpen = row.classList.contains('open');
+  // Sabhi rows ko band karein
+  document.querySelectorAll('.faq-row').forEach(r => r.classList.remove('open'));
+  // Agar band tha toh sirf isi ko kholiye
+  if(!isOpen) row.classList.add('open');
+}
+
+    document.getElementById('yt-btn').href = DATA.youtubeLink;
+    if(DATA.quote.text) { document.getElementById('q-text').innerText = `"${DATA.quote.text}"`; document.getElementById('q-author').innerText = `- ${DATA.quote.author}`; }
+
+    const renderTiles = (id, list, icon, color) => {
+      document.getElementById(id).innerHTML = list.map(item => `<a href="${item.link}" target="_blank" class="floating-tile"><span class="material-icons-round" style="color:${color}">${icon}</span> ${item.title}</a>`).join('');
+    }
+    renderTiles('lib-v', DATA.library.filter(i => i.type==='video'), 'play_circle', 'var(--clr-blue)');
+    renderTiles('lib-n', DATA.library.filter(i => i.type==='note'), 'description', 'var(--clr-green)');
+    renderTiles('lib-m', DATA.library.filter(i => i.type==='manual'), 'auto_stories', 'var(--clr-orange)');
+    renderTiles('mock-1', DATA.mocks.set1, 'edit_note', '#555');
+    renderTiles('mock-2', DATA.mocks.set2, 'edit_note', '#555');
+    document.getElementById('imp-list').innerHTML = DATA.impLinks.map(l => `<a href="${l.link}" target="_blank" class="floating-tile"><span class="material-icons-round">link</span> ${l.title}</a>`).join('');
+    document.getElementById('faq-list-container').innerHTML = DATA.faqs.map(f => `
+  <div class="faq-row">
+    <div class="faq-q-patti" onclick="toggleFaq(this.parentElement)">
+      ${f.q}
+      <span class="material-icons-round">expand_more</span>
+    </div>
+    <div class="faq-a">
+      <div style="display: flex; gap: 10px; align-items: flex-start;">
+        <span class="material-icons-round" style="font-size:20px; color:var(--ink-red);">double_arrow</span>
+        <span>${f.a}</span>
+      </div>
+    </div>
+  </div>`).join('');
+
+    showSec('home');
+  </script>
+</body>
+</html>
