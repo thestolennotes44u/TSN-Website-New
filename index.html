@@ -96,7 +96,9 @@
 
     /* Remove dots and green strip on Mobile */
     .container::before { display: none; } 
-    .container { 
+    .container {
+	display: flex;
+    flex-direction: column;
         padding: 25px 15px !important; 
         border-left: none !important; 
         margin: 5px auto;
@@ -116,11 +118,14 @@
     .sticky-note {
         padding: 15px 10px; /* Mobile par notes thode compact */
     }
+	.quote-line { font-size: 1rem !important; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    .author-line { font-size: 1rem !important; }
+    footer { padding-top: 30px; }
 }
     .nav-btn.active { color: #ffff00; }
     .yt-btn { background: #ff0000; color: #fff; padding: 6px 15px; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; display: flex; align-items: center; gap: 8px; font-weight: 700; text-decoration: none; }
 
-    .container { max-width: 800px; margin: 25px auto; min-height: 85vh; background-color: var(--paper); background-image: linear-gradient(#c8e6c9 1px, transparent 1px); background-size: 100% 2.2rem; padding: 40px 40px 40px 75px; box-shadow: 15px 15px 50px rgba(0,0,0,0.7); position: relative; border-left: 20px solid #6b8e6b; }
+    .container { max-width: 800px; margin: 25px auto; min-height: 85vh; background-color: var(--paper); background-image: linear-gradient(#c8e6c9 1px, transparent 1px); background-size: 100% 2.2rem; padding: 40px 40px 40px 75px; box-shadow: 15px 15px 50px rgba(0,0,0,0.7); position: relative; border-left: 20px solid #6b8e6b; display: flex; flex-direction: column; }
     .container::before { content: ''; position: absolute; left: 10px; top: 0; bottom: 0; width: 30px; background-image: radial-gradient(circle, #333 5px, transparent 7px); background-size: 30px 44px; z-index: 2; }
 
     .page-section { display: none; animation: fadeIn 0.4s ease-out; }
@@ -137,9 +142,9 @@
 }
     .quick-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; margin: 30px 0; }
     .sticky-note { font-family: 'Kalam', cursive; padding: 25px 10px; text-align: center; cursor: pointer; box-shadow: 4px 4px 10px rgba(0,0,0,0.1); border: 1px solid rgba(0,0,0,0.1); }
-    .sn-video { background: #c7eeff; transform: rotate(-2deg); }
-    .sn-notes { background: #d4f8d4; transform: rotate(1deg); }
-    .sn-mocks { background: #fff9c4; transform: rotate(-1.5deg); }
+    .sn-video { background: #c7eeff; transform: rotate(0deg); }
+    .sn-notes { background: #d4f8d4; transform: rotate(0deg); }
+    .sn-mocks { background: #fff9c4; transform: rotate(0deg); }
 
     #libSearch { width: 100%; padding: 12px 25px; font-size: 1.1rem; border: 2px solid var(--ink-blue); border-radius: 50px; outline: none; margin-bottom: 30px; box-sizing: border-box; }
     .acc-panel { display: none; padding: 20px; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 15px; border: 2px dashed #999; margin-bottom: 25px; }
@@ -232,8 +237,9 @@
   background: #d63031;
 }
 
-    .quote-line { font-family: 'Kalam', cursive; font-size: 1.3rem; color: #636e72; display: block; margin-bottom: 5px; text-align: center; }
-    .author-line { font-family: 'Kalam', cursive; font-size: 1.1rem; color: #7f8c8d; font-weight: 700; display: block; text-align: center; }
+footer { margin-top: auto; padding-top: 100px; padding-bottom: 0px; }
+    .quote-line { font-family: 'Kalam', cursive; font-size: 1.3rem; color: #636e72; display: block; margin-bottom: 5px; text-align: right; }
+    .author-line { font-family: 'Kalam', cursive; font-size: 1.1rem; color: #7f8c8d; font-weight: 700; display: block; text-align: right; }
 
     @media (max-width: 650px) { .container { padding: 40px 20px 40px 60px; } .quick-grid { grid-template-columns: 1fr; } }
   </style>

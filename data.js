@@ -4,7 +4,7 @@ const DATA = {
 
     // 2. The Home Page Quote
     quote: {
-        text: "If you want to shine like a sun, first burn like a sun",
+        text: "You have to dream before your dreams can come true",
         author: "Dr. A. P. J. Abdul Kalam"
     },
 
