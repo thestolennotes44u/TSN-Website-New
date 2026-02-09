@@ -10,7 +10,7 @@
 
   <style>
     :root {
-      --header-bg: #0f172f; --desk-bg: #442200; --paper: #e8f5e9;
+      --header-bg: #0f172f; --desk-bg: #444488; --paper: #e8f5e9;
       --ink-black: #1e272e; --ink-blue: #0984e3; --ink-red: #d63031;
       --clr-blue: #1565c0; --bg-about: #b2ebf2;
       --clr-orange: #e67e22; --bg-links: #fff9c4;
@@ -68,43 +68,54 @@
 
 /* Specific adjustment for very small screens */
 @media (max-width: 650px) { 
-    /* Center Navbar on Mobile with tighter gaps */
+    /* Compact Navbar */
     .nav-inner {
         flex-direction: column;
-        gap: 5px; /* Gap kam kiya taaki height kam ho jaye */
+        gap: 8px;
         padding: 8px 10px;
     }
     .logo-text {
         text-align: center;
         width: 100%;
-        font-size: 1.2rem; /* Title thoda chota taaki ek line mein aaye */
+        font-size: 1.6rem; /* Size thoda bada kiya */
+        letter-spacing: 1px; /* Letters ke beech space taaki readable ho */
+        color: #ffffff; /* Bright yellow */
+        border-bottom: 2px dashed rgba(255,255,255,0.2); /* Buttons se alag dikhne ke liye ek halki line */
+        padding-bottom: 5px;
+        margin-bottom: 5px;
     }
     .nav-links {
         justify-content: center;
-        gap: 5px; /* Buttons ke beech ka gap kam kiya */
+        gap: 6px;
         width: 100%;
     }
-    .nav-btn {
-        padding: 5px 6px;
-        font-size: 0.8rem; /* Buttons thode compact */
-    }
-    .yt-btn {
-        padding: 4px 10px;
-        font-size: 0.75rem;
-    }
+
+    /* Hide YouTube Text - Only Icon visible */
+    #yt-text { display: none; }
+    .yt-btn { padding: 6px 12px; }
 
     /* Remove dots and green strip on Mobile */
     .container::before { display: none; } 
     .container { 
-        padding: 25px 15px !important; /* Side padding aur kam ki taaki text fail sake */
+        padding: 25px 15px !important; 
         border-left: none !important; 
-        margin: 5px auto; /* Margin kam kiya */
-        width: 94%; /* Screen ka zyada hissa use karne ke liye */
+        margin: 5px auto;
+        width: 94%; 
     }
 
-    /* Grid settings - as per your current code */
-    .quick-grid { grid-template-columns: 1fr; } 
-    .acc-panel, #imp-list { grid-template-columns: 1fr !important; }
+    /* Quick Grid & Panels (Preserving your existing logic) */
+    .quick-grid { 
+        grid-template-columns: 1fr; 
+        gap: 12px;
+        margin: 20px 0;
+    } 
+    .acc-panel, #imp-list { 
+        grid-template-columns: 1fr !important; 
+    }
+    
+    .sticky-note {
+        padding: 15px 10px; /* Mobile par notes thode compact */
+    }
 }
     .nav-btn.active { color: #ffff00; }
     .yt-btn { background: #ff0000; color: #fff; padding: 6px 15px; border-radius: 4px; font-family: 'Montserrat', sans-serif; font-size: 0.85rem; display: flex; align-items: center; gap: 8px; font-weight: 700; text-decoration: none; }
@@ -237,7 +248,10 @@
         <button class="nav-btn" onclick="showSec('library')" id="nav-library">Library</button>
         <button class="nav-btn" onclick="showSec('mocks')" id="nav-mocks">Practice</button>
         <button class="nav-btn" onclick="showSec('support')" id="nav-support">Help</button>
-        <a href="#" id="yt-btn" target="_blank" class="yt-btn"><span class="material-icons-round" style="font-size:18px;">smart_display</span> YouTube</a>
+        <a href="https://www.youtube.com/@TheStolenNotes" id="yt-btn" target="_blank" class="yt-btn">
+    <span class="material-icons-round" style="font-size:18px;">smart_display</span>
+    <span id="yt-text">YouTube</span> 
+</a>
       </div>
     </div>
   </nav>
