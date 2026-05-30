@@ -253,9 +253,9 @@ footer { margin-top: auto; padding-top: 100px; padding-bottom: 0px; }
       <div class="nav-links">
         <button class="nav-btn active" onclick="showSec('home')" id="nav-home">Home</button>
         <button class="nav-btn" onclick="showSec('library')" id="nav-library">Library</button>
-        <button class="nav-btn" onclick="showSec('mocks')" id="nav-mocks">Practice</button>
+        <button class="nav-btn" onclick="showSec('mocks')" id="nav-mocks">Mock Tests</button>
         <button class="nav-btn" onclick="showSec('support')" id="nav-support">Help</button>
-        <a href="https://www.youtube.com/@TheStolenNotes" id="yt-btn" target="_blank" class="yt-btn">
+        <a href="#" id="yt-btn" target="_blank" class="yt-btn">
     <span class="material-icons-round" style="font-size:18px;">smart_display</span>
     <span id="yt-text">YouTube</span> 
 </a>
@@ -276,7 +276,7 @@ footer { margin-top: auto; padding-top: 100px; padding-bottom: 0px; }
     This portal serves as the organized anchor for our community, bringing lectures, notes, and mocks together so you can focus on learning, not searching.
    
     <div class="yt-ribbon-container">
-      <a href="https://www.youtube.com/@TheStolenNotes" target="_blank" class="yt-ribbon">
+      <a href="#" id="yt-ribbon-link" target="_blank" class="yt-ribbon">
         <span class="material-icons-round" style="font-size:18px;">play_circle</span>
         VISIT US ON YOUTUBE
       </a>
@@ -300,17 +300,16 @@ footer { margin-top: auto; padding-top: 100px; padding-bottom: 0px; }
     <section id="mocks" class="page-section">
       <div style="text-align: right; margin-bottom: 10px;">
         <button onclick="toggleInstructions()" style="background:var(--clr-faq); color:white; border:none; padding:6px 12px; border-radius:4px; cursor:pointer; font-size:0.8rem; display: flex; align-items: center; gap: 5px; margin-left: auto;">
-          <span class="material-icons-round" style="font-size: 16px;">info</span> Instructions
+          <span class="material-icons-round" style="font-size: 16px;">info</span> Important
         </button>
       </div>
       <div id="mock-instr" style="display:none; background:#fff9c4; border:1px dashed #f39c12; padding:20px; border-radius:8px; margin-bottom:20px; font-size:1rem; font-family:'Segoe UI', sans-serif;">
         <ul style="margin:0; padding-left:20px; line-height:1.8; color: #2c3e50;">
           <li>Mock tests are available for <strong>Core Plus</strong> and <strong>Audit Plus</strong> members.</li>
-          <li>Access form is available under the <strong>Posts</strong> tab on YouTube.</li>
-          <li>Access is expired after 30 days. One needs to fill the form again to get continued access.</li>
-          <li>It may take <strong>2-4 days</strong> to get access after filling in the form.</li>
+          <li>To enter the tests, use the email ID linked with your YouTube account.</li>
+          <li>It may take from a few hours to a couple of days to get access after joining.</li>
           <li><strong>Set 1</strong> is updated on the 1st of every month.</li>
-					<li><strong>Set 2</strong> is updated on the 15th of every month.</li>
+			<li><strong>Set 2</strong> is updated on the 15th of every month.</li>
           <li>For any queries, write to: <strong>TheStolenNotes4u@gmail.com</strong></li>
         </ul>
       </div>
@@ -429,6 +428,7 @@ footer { margin-top: auto; padding-top: 100px; padding-bottom: 0px; }
 
     document.getElementById('yt-btn').href = DATA.youtubeLink;
     if(DATA.quote.text) { document.getElementById('q-text').innerText = `"${DATA.quote.text}"`; document.getElementById('q-author').innerText = `- ${DATA.quote.author}`; }
+	document.getElementById('yt-ribbon-link').href = DATA.youtubeLink;
 
     const renderTiles = (id, list, icon, color) => {
       document.getElementById(id).innerHTML = list.map(item => `<a href="${item.link}" target="_blank" class="floating-tile"><span class="material-icons-round" style="color:${color}">${icon}</span> ${item.title}</a>`).join('');
