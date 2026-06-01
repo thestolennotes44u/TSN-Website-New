@@ -29,12 +29,12 @@ const DATA = {
     // Pen icon (🖊️) humne fix kiya tha
     mocks: {
         set1: [ 
-            { title: "Set 1: PC 1", link: "https://testmoz.com/q/15105684" },
-			{ title: "Set 1: PC 2", link: "https://testmoz.com/q/15098712" },
-			{ title: "Set 1: PC 3", link: "https://testmoz.com/q/15102106" },
-			{ title: "Set 1: PC 12", link: "https://testmoz.com/q/15099752" },
-			{ title: "Set 1: PC 14", link: "https://testmoz.com/q/15101928" },
-            { title: "Set 1: PC 16", link: "https://testmoz.com/q/15102076" }
+            { title: "Set 1: PC 1", link: "https://www.youtube.com/post/UgkxQPIxTiYZRau2EWwi1GyzshZPfbCBT54e" },
+			{ title: "Set 1: PC 2", link: "https://www.youtube.com/post/UgkxiJ7nAUxiTlTR1HtpVk1ipkmCBKA3QFeK" },
+			{ title: "Set 1: PC 3", link: "https://www.youtube.com/post/Ugkx9xlIJkr8_CSsnLIikD1ddDV_AyUbTei_" },
+			{ title: "Set 1: PC 12", link: "https://www.youtube.com/post/UgkxX1uZVmC_d7bSRSDhe3habR5Qk6SsZzWX" },
+			{ title: "Set 1: PC 14", link: "https://www.youtube.com/post/Ugkx68FRf6bY0jC1XN3hRPbuBf-F5poti_2a" },
+            { title: "Set 1: PC 16", link: "https://www.youtube.com/post/Ugkxo28ORuT2Q5QQQteZjLzJ5TK1f_Lndoou" }
         ],
         set2: [ 
             { title: "Set 2: PC 1", link: "https://testmoz.com/q/15151028" },
