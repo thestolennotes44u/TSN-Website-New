@@ -37,12 +37,12 @@ const DATA = {
             { title: "Set 1: PC 16", link: "https://www.youtube.com/post/Ugkxo28ORuT2Q5QQQteZjLzJ5TK1f_Lndoou" }
         ],
         set2: [ 
-            { title: "Set 2: PC 1", link: "https://testmoz.com/q/15151028" },
-			{ title: "Set 2: PC 2", link: "https://testmoz.com/q/15147968" },
-			{ title: "Set 2: PC 3", link: "https://testmoz.com/q/15151084" },
-			{ title: "Set 2: PC 12", link: "https://testmoz.com/q/15150382" },
-			{ title: "Set 2: PC 14", link: "https://testmoz.com/q/15150900" },
-            { title: "Set 2: PC 16", link: "https://testmoz.com/q/15150966" }
+            { title: "Set 2: PC 1", link: "https://www.youtube.com/post/UgkxxGraFUbI2qP-Ls5eSNfO-dIke4qCDibE" },
+			{ title: "Set 2: PC 2", link: "https://www.youtube.com/post/UgkxZ1sk8yEStBF4jATlK4eVN4_9F5AVfoFu" },
+			{ title: "Set 2: PC 3", link: "https://www.youtube.com/post/UgkxaL1bOCHvE9uR1K1bLgyWwaDV5Iq-tIc0" },
+			{ title: "Set 2: PC 12", link: "https://www.youtube.com/post/UgkxDHwrPk-8JgCVOCYXPT7h1iMEqATUQBSA" },
+			{ title: "Set 2: PC 14", link: "https://www.youtube.com/post/UgkxJjnJvxTjL7eCMlQWn6ZTLOKt2JW4YBSy" },
+            { title: "Set 2: PC 16", link: "https://www.youtube.com/post/Ugkx8t9-EBtD6460k3kpGlJjGFpiZYdW3J2f" }
         ]
     },
 
